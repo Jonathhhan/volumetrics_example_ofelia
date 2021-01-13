@@ -2,9 +2,13 @@
 
 
 This Pure Data patch made with the Ofelia library uses the ofxVolumetrics addon.
+
 https://github.com/pure-data/pure-data
+
 https://github.com/cuinjune/Ofelia
+
 https://github.com/timscaffidi/ofxVolumetrics
+
 
 first the addon needs to be added to ofelia:
 1. replace ofxOfeliaPdBindings.h in ofxOfelia/scr

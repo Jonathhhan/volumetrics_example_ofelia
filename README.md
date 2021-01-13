@@ -19,3 +19,5 @@ First the ofxVolumetrics addon needs to be added to Ofelia:
 6. replace the compiled files in the Pure Data externals folder
 
 Then add the volumes folder from here https://github.com/wasawi/ofxVolumetrics/tree/addon_ofxVolume/ofxVolumetricsExample/bin/data to the place where the pure data patch volumetrics_example_ofelia.pd is, and run the patch.
+
+Edit: Actually you need to convert the images from .tif to .png with something like https://www.xnview.com/de/xnconvert/ because with .tif images there are a lot of warnings...

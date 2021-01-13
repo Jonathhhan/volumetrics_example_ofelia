@@ -1,0 +1,40 @@
+#N canvas 1286 131 543 306 10;
+#X obj 16 15 cnv 15 500 270 empty empty empty 20 12 0 14 -257985 -66577
+0;
+#X obj 41 25 cnv 15 450 250 empty empty Volumetrics 40 50 0 30 -4032
+-257985 0;
+#X obj 81 135 ofelia d -k \$0-main;
+#A __set if type(window) ~= "userdata" then \; window = ofWindow()
+\; end \; \; local a = ofelia \; local canvas = ofCanvas(this) \; local
+clock = ofClock(this \, "setup") \; local cam = ofEasyCam() \; local
+dataDir = canvas:getDir() .. "/data/" \; local pix = ofPixels() \;
+local volumetrics = ofVolumetrics() \; local imageSequence = ofImageSequencePlayer()
+\; local volWidth \, volHeight \, volDepth = 0 \, 0 \, 0 \; \; function
+a.new() \; ofWindow.addListener("setup" \, this) \; ofWindow.addListener("update"
+\, this) \; ofWindow.addListener("draw" \, this) \; ofWindow.addListener("exit"
+\, this) \; window:setPosition(30 \, 100) \; window:setSize(1200 \,
+800) \; if ofWindow.exists then \; clock:delay(0) \; else \; window:create()
+\; end \; end \; \; function a.free() \; window:destroy() \; ofWindow.removeListener("setup"
+\, this) \; ofWindow.removeListener("update" \, this) \; ofWindow.removeListener("draw"
+\, this) \; ofWindow.removeListener("exit" \, this) \; end \; \; function
+a.setup() \; ofSetWindowTitle("Volu") \; ofBackground(150 \, 230 \,
+255 \, 255) \; ofEnableBlendMode(OF_BLENDMODE_ALPHA) \; end \; \; function
+a.update() \; if ofelia.upload == 1 then \; imageSequence:init(dataDir
+.. "volumes/head/cthead-8bit" \, 3 \, ".png" \, 1) \; volWidth = imageSequence:getWidth()
+\; volHeight = imageSequence:getHeight() \; volDepth = imageSequence:getSequenceLength()
+\; print("volWidth:" \, volWidth \, "volHeight:" \, volHeight \, "volDepth:"
+\, volDepth \, "size:" \, volWidth * volHeight * volDepth * 4) \; volumetrics:setup(volWidth
+\, volHeight \, volDepth \, ofVec3f(1 \, 1 \, 2) \, true) \; volumetrics:setRenderSettings(1.0
+\, 1 \, 0.75 \, 0.1) \; for z = 0 \, volDepth -1 do \; imageSequence:loadFrame(z)
+\; pix = imageSequence:getPixels() \; pix:setImageType(OF_IMAGE_COLOR_ALPHA)
+\; pix:setChannel(4 \, imageSequence:getPixels()) \; volumetrics:loadVolumeData(pix:getData()
+\, volWidth \, volHeight \, 1 \, 0 \, 0 \, z) \; end \; ofelia.upload
+= 0 \; end \; end \; \; function a.draw() \; if volumetrics:isInitialized()
+== true then \; cam:beginCamera() \; ofDrawGrid() \; ofRotateXDeg(270)
+\; volumetrics:drawVolume(0 \, 0 \, 0 \, ofGetHeight()/2 \, 0) \; cam:endCamera()
+\; end \; end \; \; function a.exit() \; volumetrics:destroy() \; pix:clear()
+\; end \; \;;
+#X msg 81 112 upload 1;
+#X text 77 164 adapted from tim scaffidi https://github.com/timscaffidi/ofxVolumetrics/tree/master/ofxVolumetricsExample
+jonathan frank 2021;
+#X connect 3 0 2 0;

@@ -1,7 +1,7 @@
 # pure_data_volumetrics_example_ofelia
 
 
-this pure data patch made with the ofelia library uses the ofxvolumetrics addon. 
+This Pure Data patch made with the Ofelia library uses the ofxVolumetrics addon. 
 https://github.com/pure-data/pure-data
 https://github.com/cuinjune/Ofelia
 https://github.com/timscaffidi/ofxVolumetrics

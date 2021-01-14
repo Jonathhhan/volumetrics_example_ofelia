@@ -1,9 +1,9 @@
-#N canvas 1290 132 543 306 10;
+#N canvas 1289 132 543 306 10;
 #X obj 16 15 cnv 15 500 270 empty empty empty 20 12 0 14 -257985 -66577
 0;
 #X obj 41 25 cnv 15 450 250 empty empty Volumetrics 40 50 0 30 -4032
 -257985 0;
-#X obj 81 135 ofelia d -k \$0-main;
+#X obj 81 166 ofelia d -k \$0-main;
 #A __set if type(window) ~= "userdata" then \; window = ofWindow()
 \; end \; \; local a = ofelia \; local canvas = ofCanvas(this) \; local
 clock = ofClock(this \, "setup") \; local cam = ofEasyCam() \; local
@@ -35,7 +35,9 @@ a.update() \; if ofelia.upload == 1 then \; imageSequence:init(dataDir
 \; volumetrics:drawVolume(0 \, 0 \, 0 \, ofGetHeight()/2 \, 0) \; cam:endCamera()
 \; end \; end \; \; function a.exit() \; volumetrics:destroy() \; pix:clear()
 \; end \; \;;
-#X msg 81 112 upload 1;
-#X text 77 164 adapted from tim scaffidi https://github.com/timscaffidi/ofxVolumetrics/tree/master/ofxVolumetricsExample
+#X msg 81 143 upload 1;
+#X text 77 195 adapted from tim scaffidi https://github.com/timscaffidi/ofxVolumetrics/tree/master/ofxVolumetricsExample
 jonathan frank 2021;
+#X obj 81 120 loadbang;
 #X connect 3 0 2 0;
+#X connect 5 0 3 0;
